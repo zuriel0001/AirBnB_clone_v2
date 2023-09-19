@@ -74,8 +74,8 @@ class FileStorage:
         my_dict = {}
         for key, value in self.__objects.items():
             my_dict[key] = value.to_dict()
-        with open(self.__file_path, 'w', encoding="UTF-8") as f:
-            json.dump(my_dict, f)
+        with open(self.__file_path, 'w', encoding="UTF-8") as file:
+            json.dump(my_dict, file)
 
     def reload(self):
         """
@@ -90,8 +90,8 @@ class FileStorage:
             None
         """
         try:
-            with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                for key, value in (json.load(f)).items():
+            with open(self.__file_path, 'r', encoding="UTF-8") as file:
+                for key, value in (json.load(file)).items():
                     value = eval(value["__class__"])(**value)
                     self.__objects[key] = value
         except FileNotFoundError:
