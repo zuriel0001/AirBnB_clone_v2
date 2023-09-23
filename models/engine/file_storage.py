@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""This is the file storage class for AirBnB_v2"""
-
+"""This is the file storage class for AirBnB"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -13,26 +12,19 @@ import shlex
 
 
 class FileStorage:
-    """
-    A class for managing storage and retrieval of objects to/from a JSON file.
-
+    """This class serializes instances to a JSON file and
+    deserializes JSON file to instances
     Attributes:
-        __file_path(str): path to the JSON file
-        __objects(dic): A dictionary to store objects with their unique keys.
+        __file_path: path to the JSON file
+        __objects: objects will be stored
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self, cls=None):
-        """
-        Retrieve all objects from the internal storage dictionary.
-
-        Args:
-           cls (Optional[Type]): If provided, filter objects by the specified class.
-
-        Returns:
-           dict: A dictionary containing objects from the storage dictionary.
-              If 'cls' is provided, only objects of the specified class are returned.
+        """returns a dictionary
+        Return:
+            returns a dictionary of __object
         """
         dic = {}
         if cls:
@@ -47,29 +39,16 @@ class FileStorage:
             return self.__objects
 
     def new(self, obj):
-        """
-        Add a new object to the internal storage dictionary.
-
+        """sets __object to given obj
         Args:
-          obj: The object to be added.
-
-        Returns:
-           None
+            obj: given object
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             self.__objects[key] = obj
 
     def save(self):
-        """
-         Serialize objects from the internal storage dictionary to a JSON file.
-
-        The method iterates through the objects in `self.__objects`, converts them
-        to dictionaries using the `to_dict` method (assuming such a method exists
-        for the objects), and saves them to the JSON file specified by `self.__file_path`.
-
-    Returns:
-        None
+        """serialize the file path to JSON file path
         """
         my_dict = {}
         for key, value in self.__objects.items():
@@ -78,16 +57,7 @@ class FileStorage:
             json.dump(my_dict, f)
 
     def reload(self):
-        """
-        Load and reload objects from a JSON file into the internal storage dictionary.
-
-        If the file specified by `self.__file_path` exists, it reads the JSON data,
-        reconstructs objects, and populates the internal dictionary with them.
-
-        If the file is not found, the method does nothing.
-
-        Returns:
-            None
+        """serialize the file path to JSON file path
         """
         try:
             with open(self.__file_path, 'r', encoding="UTF-8") as f:
@@ -98,23 +68,13 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """
-        Delete an object from the internal storage dictionary, if it exists.
-
-        Args:
-            obj: The object to be deleted. If provided, the method will attempt
-             to remove the object from the storage dictionary.
-
-        Return:
-            None
+        """ delete an existing element
         """
         if obj:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
 
     def close(self):
-        """
-        Close and finalize any operations or resources related to this class.
+        """ calls reload()
         """
         self.reload()
-
