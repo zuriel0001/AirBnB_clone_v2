@@ -8,14 +8,15 @@ from sqlalchemy.orm import relationship
 
 
 class Amenity(BaseModel, Base):
-    """Represents an class Amenity for the MySQL database.
+    """Represents a class Amenity for the MySQL database.
 
     Attributes:
-        __tablename__ (str): name of MySQL table to store Amenities.
+        __tablename__ (str):Th4 name of MySQL table to store Amenities.
         name (sqlalchemy String): The amenity name.
         place_amenities (sqlalchemy relationship): Place-Amenity relationship.
     """
     __tablename__ = "amenities"
     name = Column(String(128), nullable=False)
+
     place_amenities = relationship("Place", secondary="place_amenity",
                                    viewonly=False)
