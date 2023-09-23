@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines the HBNB console."""
+"""Defines the HBNB _v2 console."""
 import cmd
 from shlex import split
 from models import storage
@@ -41,8 +41,16 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
-        Create a new class instance with given keys/values and print its id.
+        """
+        Create a new instance of a class and save it to the data storage.
+
+        Args:
+          line (str): The user input containing the class name and attributes.
+
+        Returns:
+          None
+
+        Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
         """
         try:
             if not line:
@@ -75,12 +83,20 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        """Prints the string representation of an instance
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
+        """
+        Display string representation of an instance based on its class & ID.
+
+        Args:
+          line (str): The user input containing the class name and instance ID.
+
+        Returns:
+          None
+
+        Raises:
+          SyntaxError: If the user input is empty.
+          NameError: If the specified class doesn't exist.
+          IndexError: If the user input is missing the instance ID.
+          KeyError: If no instance with the given class and ID is found.
         """
         try:
             if not line:
@@ -106,12 +122,23 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, line):
-        """Deletes an instance based on the class name and id
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
+        """
+        Delete an instance based on its class name and ID.
+
+        Args:
+          line (str): The user input containing the class name and instance ID.
+
+        Returns:
+          None
+
+        Raises:
+          SyntaxError: If the user input is empty.
+          NameError: If the specified class doesn't exist.
+          IndexError: If the user input is missing the instance ID.
+          KeyError: If no instance with the given class and ID is found.
+
+        Example usage:
+          To delete a User instance with ID '12345': destroy User 12345
         """
         try:
             if not line:
@@ -157,14 +184,22 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Updates an instanceby adding or updating attribute
-        Exceptions:
-            SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
-            IndexError: when there is no id given
-            KeyError: when there is no valid id given
-            AttributeError: when there is no attribute given
-            ValueError: when there is no value given
+        """
+        Update an instance's attribute based on its class,ID,attribute, & value
+
+        Args:
+          line (str): user input with class name, ID, attribute, and value.
+
+        Returns:
+          None
+
+        Raises:
+          SyntaxError: If user input is empty.
+          NameError: If the specified class doesn't exist.
+          IndexError: If input is missing (class, ID, attribute, or value).
+          KeyError: If no instance with class and ID is found.
+          AttributeError: If attribute name is missing.
+          ValueError: If the new value is missing or can't be evaluated.
         """
         try:
             if not line:
