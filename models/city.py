@@ -15,9 +15,9 @@ class City(BaseModel, Base):
 
     Attributes:
         __tablename__ (str): The name of the database table for cities.
-        name (Column): The name of the city (String, max length 128, not nullable).
-        state_id (Column): The foreign key reference to the associated state (String, max length 60, not nullable).
-        places (relationship): A relationship to associated places in the city with cascading delete options.
+        name (Column): The name of the city
+        state_id (Column): The foreign key reference to the associated state
+        places: to associate places in city with cascading delete options.
     """
     __tablename__ = "cities"
     name = Column(String(128), nullable=False)

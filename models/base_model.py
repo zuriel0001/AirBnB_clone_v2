@@ -29,8 +29,8 @@ class BaseModel:
 
         Attributes:
             id (str): A unique identifier generated for the instance.
-            created_at (datetime): The date and time when the instance was created.
-            updated_at (datetime): The date and time when the instance was last updated.
+            created_at (datetime): The date and time instance was created.
+            updated_at (datetime): The date and time instance was last updated.
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -63,7 +63,7 @@ class BaseModel:
 
     def save(self):
         """
-        Update the public instance attribute 'updated_at' to the current date and time.
+        Update the instance attribute 'updated_at' to the current date & time.
         Add the current instance to the storage and save the storage data.
 
         This method should be called whenever changes are made to the object

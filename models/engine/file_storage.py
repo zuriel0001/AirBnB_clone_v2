@@ -28,11 +28,11 @@ class FileStorage:
         Retrieve all objects from the internal storage dictionary.
 
         Args:
-           cls (Optional[Type]): If provided, filter objects by the specified class.
+           cls (Optional[Type]): filter objects by the specified class.
 
         Returns:
            dict: A dictionary containing objects from the storage dictionary.
-              If 'cls' is provided, only objects of the specified class are returned.
+           If 'cls' is given, only objects of the specified class are returned.
         """
         dic = {}
         if cls:
@@ -64,9 +64,10 @@ class FileStorage:
         """
          Serialize objects from the internal storage dictionary to a JSON file.
 
-        The method iterates through the objects in `self.__objects`, converts them
-        to dictionaries using the `to_dict` method (assuming such a method exists
-        for the objects), and saves them to the JSON file specified by `self.__file_path`.
+        The method iterates through the objects in `self.__objects`,
+        converts them to dictionaries using the `to_dict` method
+        (assuming such a method exists for the objects), and
+        saves them to the JSON file specified by `self.__file_path`.
 
     Returns:
         None
@@ -79,10 +80,11 @@ class FileStorage:
 
     def reload(self):
         """
-        Load and reload objects from a JSON file into the internal storage dictionary.
+        Load & reload objects from a JSON file into internal storage dict.
 
-        If the file specified by `self.__file_path` exists, it reads the JSON data,
-        reconstructs objects, and populates the internal dictionary with them.
+        If the file specified by `self.__file_path` exists,
+        it reads the JSON data, reconstructs objects, and populates
+        the internal dictionary with them.
 
         If the file is not found, the method does nothing.
 
