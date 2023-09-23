@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""c FileStorage instance for the application"""
+"""cr FileStorage instance for the application"""
 from models.engine.file_storage import FileStorage
 from models.engine.db_storage import DBStorage
 from models.base_model import BaseModel
