@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script to test the console"""
+"""Script to test the console for the AirBnB_v2"""
 
 import unittest
 from unittest.mock import patch
