@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Model for the state class"""
+"""The state class"""
+
 from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
@@ -10,9 +11,19 @@ import shlex
 
 
 class State(BaseModel, Base):
-    """Represents the class for State
+    """
+    Class representing a state in the system.
+
     Attributes:
-        name: the input name
+        __tablename__ (str): The name of the database table for states.
+        name (str): The name of the state.
+        cities (list): A list of City objects associated with this state.
+
+    Methods:
+        cities (property): Get a list of cities associated with this state.
+
+    Relationships:
+        cities (relationship): to the City model with cascade deletion.
     """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
@@ -21,15 +32,19 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        var = models.storage.all()
-        lista = []
-        result = []
-        for key in var:
-            city = key.replace('.', ' ')
-            city = shlex.split(city)
-            if (city[0] == 'City'):
-                lista.append(var[key])
-        for elem in lista:
-            if (elem.state_id == self.id):
-                result.append(elem)
-        return (result)
+        all_states = models.storage.all()
+        cities_list = []
+        matching_cities = []
+
+        for key in all_states:
+            city_data = key.replace('.', ' ')
+            city_data = shlex.split(city_data)
+
+            if city_data[0] == 'City':
+                cities_list.append(all_states[key])
+
+        for matching_city in cities_list:
+            if matching_city.state_id == self.id:
+                matching_cities.append(matching_city)
+
+        return matching_cities
