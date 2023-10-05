@@ -1,6 +1,6 @@
-# Configures a web server for deployment of web_static.
+# Puppet script to configure web servers to deploy web_static.
 
-# Nginx configuration file
+#  configuring Nginx
 $nginx_conf = "server {
     listen 80 default_server;
     listen [::]:80 default_server;
