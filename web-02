@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to connect web-02 server through a private key
+
+ssh ubuntu@54.172.84.52 -i ~/.ssh/school
