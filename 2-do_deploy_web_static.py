@@ -6,8 +6,8 @@ from datetime import datetime
 import os
 
 env.hosts = ["34.207.189.180", "54.172.84.52"]
-#env.user = 'ubuntu'
-#env.key_filename = '~/.ssh/school'
+# env.user = 'ubuntu'
+# env.key_filename = '~/.ssh/school'
 
 
 @task
