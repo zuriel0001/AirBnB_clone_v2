@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" module doc
+"""
+Script to deploy compressed file to web server
 """
 from fabric.api import task, local, env, put, run
 from datetime import datetime
