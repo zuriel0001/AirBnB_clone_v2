@@ -20,8 +20,8 @@ html_content="<html>
 
 echo "$html_content" | sudo tee /data/web_static/releases/test/index.html > /dev/null
 
-rm -rf /data/web_static/current
-ln -sf /data/web_static/releases/test/ /data/web_static/current
+sudo rm -rf /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu:ubuntu /data/
 
