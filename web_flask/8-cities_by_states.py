@@ -10,8 +10,8 @@ from flask import render_template
 app = Flask(__name__)
 
 
-@app.route("/states_list", strict_slashes=False)
-def states_list():
+@app.route("/cities_by_states", strict_slashes=False)
+def cities_by_states():
     """Displays HTML page with list of all states and related cities.
 
     The states and cities are sorted by name.
