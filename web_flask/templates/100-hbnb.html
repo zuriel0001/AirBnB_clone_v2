@@ -1,113 +1,145 @@
 <!DOCTYPE html>
-<HTML lang="en">
-  <HEAD>
-    <META charset="utf-8">
-    <META name="viewport" content="width=device-width, initial-scale=1">
-    <TITLE>HBnB</TITLE>
-    <LINK rel="stylesheet" href="../static/styles/reset.css">
-    <LINK rel="stylesheet" href="../static/styles/103-common.css">
-    <LINK rel="stylesheet" href="../static/styles/103-header.css">
-    <LINK rel="stylesheet" href="../static/styles/103-footer.css">
-    <LINK rel="stylesheet" href="../static/styles/103-filters.css">
-    <LINK rel="stylesheet" href="../static/styles/103-places.css">
-    <LINK rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-          crossorigin="anonymous">
-    <LINK rel="icon" href="../static/images/icon.png">
-  </HEAD>
+<html lang="en">
 
-  <BODY>
-    <HEADER></HEADER>
+<head>
+    <title>AirBnB clone</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="static/styles/4-common.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-header.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-footer.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/6-filters.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/8-places.css">
+    <link rel="icon" href="static/images/icon.png" type="image/png">
+</head>
 
-    <MAIN>
-      <DIV class="container">
-        <SECTION class="filters" role="search">
-          <DIV class="locations">
-            <H3>States</H3>
-            <H4>&nbsp;</H4>
-            <DIV class="popover">
-							<UL>
-              {% for state in states.values()|sort(attribute="name") %}
-                <LI><STRONG>{{ state.name }}</STRONG>
-                  <UL>
-                  {% for city in state.cities|sort(attribute="name") %}
-                    <LI>{{ city.name }}</LI>
-                  {% endfor %}
-                  </UL>
-                </LI>
-              {% endfor %}
-              </UL>
-            </DIV>
+<body>
+    <header>
+        <div class="logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4>
 
-            </DIV><DIV class="amenities">
-              <H3>Amenities</H3>
-              <H4>&nbsp;</H4>
-              <UL class="popover">
-                {% for amenity in amenities.values()|sort(attribute="name") %}
-                  <LI>{{ amenity.name}}</LI>
-                {% endfor %}
-              </UL>
-            </DIV>
-          <BUTTON>Search</BUTTON>
-        </SECTION>
+                <ul class="popover">
+                    {% for state_id, state in states.items()|sort(attribute='1.name') %}
+                    <li><h2>{{ state.name }}:</h2></li>
+                        {% for city in state.cities|sort(attribute='name') %}
+                        <li>{{ city.name }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
 
-        <SECTION class="places">
-          <H1>Places</H1>
-          {% for place in places.values()|sort(attribute="name") %}
-          <ARTICLE>
-            <DIV class="title_box">
-              <H2>{{ place.name }}</H2>
-              <DIV class="price_by_night">&#36;{{ place.price_by_night }}</DIV>
-            </DIV>
 
-            <DIV class="information">
-              <DIV class="max_guest">
-                <I class="fa fa-users fa-3x" aria-hidden="true"></I>
-                <BR>{{ place.max_guest }} Guests
-              </DIV>
-              <DIV class="number_rooms">
-                <I class="fa fa-bed fa-3x" aria-hidden="true"></I>
-                <BR>{{ place.number_rooms }} Rooms
-              </DIV>
-              <DIV class="number_bathrooms">
-                <I class="fa fa-bath fa-3x" aria-hidden="true"></I>
-                <BR>{{ place.number_bathrooms }} Bathrooms
-              </DIV>
-            </DIV>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4>
+                <ul class="popover">
+                    {% for amenity_id, amenity in amenities.items()|sort(attribute='1.name') %}
+                    <li>{{ amenity.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button>Search</button>
+        </section>
 
-            <DIV class="user">
-              <STRONG>Owner:</STRONG> {{ place.user.first_name }} {{ place.user.last_name }}
-            </DIV>
+        <section class="places">
 
-            <DIV class="description">{{ place.description|safe }}</DIV>
+            <h1>Places</h1>
 
-            <DIV class="amenities">
-              <H2>Amenities</H2>
-              {% for amenity in place.amenities|sort(attribute="name") %}
-              <UL>
-                <LI><P>{{ amenity.name }}</P></LI>
-              </UL>
-              {% endfor %}
-            </DIV>
+            <article>
+                <h2>My home</h2>
+                <div class="price_by_night">
+                    <span>80$</span>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        <span>2 Guests</span>
+                    </div>
+                    <div class="number_rooms">
+                        <span>1 Bedroom</span>
+                    </div>
+                    <div class="number_bathrooms">
+                        <span>1 Bathroom</span>
+                    </div>
+                </div>
+                <div class="user">
+                    <p><span>Owner: </span>John Lennon</p>
+                </div>
+                <div class="description">
+                    This is a lovely 1 bedroom and 1 bathroom apartment that can accomodate 2 people. It locates at the
+                    center of Shanghai and next to subway like 1. 1 stop to People Square, 2 stops to Bund, 3 stops to
+                    Jingan Temple.
+                </div>
+            </article>
 
-            <DIV class="reviews">
-              <H2>{{ place.reviews.__len__() }} Reviews</H2>
-              {% for review in place.reviews %}
-              <H3>From {{ review.user.first_name }} the {{ review.created_at.date().__str__() }}</H3>
-              <UL>
-                <LI><P>{{ review.text|safe }}</P></LI>
-              </UL>
-            {% endfor %}
-            </DIV>
-          </ARTICLE>
-          {% endfor %}
-        </SECTION>
-      </DIV>
-    </MAIN>
 
-    <FOOTER>
-      Holberton School
-    </FOOTER>
-  </BODY>
-</HTML>
+
+            <article>
+                <h2>Tiny house</h2>
+                <div class="price_by_night">
+                    <span>65$</span>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        <span>4 Guests</span>
+                    </div>
+                    <div class="number_rooms">
+                        <span>2 Bedrooms</span>
+                    </div>
+                    <div class="number_bathrooms">
+                        <span>1 Bathroom</span>
+                    </div>
+                </div>
+                <div class="user">
+                    <p><span>Owner: </span>Adrienne</p>
+                </div>
+                <div class="description">
+                    Our place is a private, affordable stand-alone guests house centrally located just minutes to French Quarters, downtown, the Fair Grounds (Jazz Fest) and City Park. The guest house is a quaint, 400 square ft. with a full bath, mini kitchen, & living room. The extra high ceilings make the home feel more spacious. The sofa converts to a bed also. We have a hand made counter area that adds character to the room and a great porch/deck to relax on and have a glass of Merlot.
+                </div>
+            </article>
+
+
+
+
+
+
+            <article>
+                <h2>A suite</h2>
+                <div class="price_by_night">
+                    <span>190$</span>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        <span>2 Guests</span>
+                    </div>
+                    <div class="number_rooms">
+                        <span>1 Bedroom</span>
+                    </div>
+                    <div class="number_bathrooms">
+                        <span>1 Bathroom</span>
+                    </div>
+                </div>
+                <div class="user">
+                    <p><span>Owner: </span>John Lennon</p>
+                </div>
+                <div class="description">
+                    Step into a cozy retreat featuring a full bath, a compact yet efficient mini kitchen, and a snug living room that opens up with extra-high ceilings. The cleverly designed space makes it feel more expansive than its size suggests. A handmade counter adds a touch of character, while the convertible sofa ensures flexibility in sleeping arrangements.
+                </div>
+            </article>
+
+
+
+
+
+
+        </section>
+    </div>
+    <footer>
+        Best School
+    </footer>
+</body>
+
+</html>
